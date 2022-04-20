@@ -35,8 +35,29 @@
       </nav>
 
 
-    <h1> Title </h1>
-    <p> Thats a paragraph </p>
-    <img src='./images/doggo.webp' alt='doggo' />
+    <h1> Product {{title}} </h1>
+    <h2>Price {{price}}€</h2>
+
+    {{#if image}}
+    <img src="./images/{{image}}" alt="{{title}}">
+    {{else}}
+    <img src="./images/placeholder.png" alt="">
+    {{/if}}
+
+   
+   <div>
+     <h5>This product is available in the following stores:</h5>
+     {{#if stores}}
+     <ul>
+       {{#each stores}}
+        <li> {{this}} <a href="#">More Details</a></li>
+       {{/each}}
+     </ul>
+     {{else}}
+     <p>This product is sold out</p>
+      {{/if}}
+  </div>
+ 
+  
 </body>
 </html>
