@@ -29,10 +29,17 @@ app.get("/contact", (req, res, next) => {
     res.render('contact')
 });
 
+app.get("/products", (req, res, next) => {
+
+    Product.find()
+        .then( productsArr => {
+            res.render("productList", {products: productsArr} );
+        })
+        .catch( error => console.log("error getting products from DB", error) );
+})
 
 
 app.get("/products/:productId", (req, res, next) => {
-    console.log(req.params.productId);
     Product.findById(req.params.productId)
         .then((productDetails)=>{
             res.render("product", productDetails)
