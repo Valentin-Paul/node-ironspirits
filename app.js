@@ -31,39 +31,14 @@ app.get("/contact", (req, res, next) => {
 
 
 
-app.get("/limoncello", (req, res, next) => {
-
-    Product.findOne({title: "Limoncello"})
+app.get("/products/:productId", (req, res, next) => {
+    console.log(req.params.productId);
+    Product.findById(req.params.productId)
         .then((productDetails)=>{
             res.render("product", productDetails)
         })
-        .catch()
-
-});
-
-app.get("/whisky", (req, res, next) => {
-    Product.findOne({title: "Single Malt Whisky Yamakazi"})
-    .then((productDetails)=>{
-        res.render("product", productDetails)
-    })
-    .catch()
-});
-
-app.get("/tequila", (req, res, next) => {
-    Product.findOne({title: "Tequila Don Julio"})
-    .then((productDetails)=>{
-        res.render("product", productDetails)
-    })
-    .catch()
-});
-
-app.get("/lambrusco", (req, res, next) => {
-    Product.findOne({title: "Lambrusco"})
-    .then((productDetails)=>{
-        res.render("product", productDetails)
-    })
-    .catch()
-});
+        .catch(error => {console.log('we have an error', error);})
+})
 
 app.listen(3001, () => {
     console.log("server listening to requests...")
